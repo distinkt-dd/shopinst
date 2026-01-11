@@ -1,0 +1,38 @@
+@use '@styles/helpers' as *;
+.header {
+	padding-block: fluid(40, 20);
+	border-bottom: var(--color-dark-hightlighter) var(--border-width-sm) solid;
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__substrate {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-width: var(--border-width-sm);
+		border-radius: var(--border-radius-sm);
+	}
+
+	&__button {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&-counter {
+			position: absolute;
+			top: -10px;
+			right: -10px;
+			display: inline-block;
+			max-width: 20px;
+			width: 100%;
+			background-color: var(--color-red);
+			border-radius: 50%;
+			color: var(--color-font-main);
+		}
+	}
+}

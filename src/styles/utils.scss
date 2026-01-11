@@ -1,0 +1,47 @@
+@use 'helpers/index' as *;
+
+.container-app {
+  width: 100%;
+  max-width: 100%;
+  padding-right: 10px;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.visible-tablet {
+  @include tablet-above {
+    display: none !important;
+  }
+}
+
+.hidden-tablet {
+  @include tablet {
+    display: none !important;
+  }
+}
+
+.visible-mobile {
+  @include mobile-above {
+    display: none !important;
+  }
+}
+
+.hidden-mobile {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+.disabled {
+  @include disabled;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.justify-self-start {
+  justify-self: start;
+}

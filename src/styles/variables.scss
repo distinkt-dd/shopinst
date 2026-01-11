@@ -1,0 +1,129 @@
+@use 'helpers/index' as *;
+
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-accent: #ffa500;
+  --color-light-highlighter: #302e53;
+  --color-dark-hightlighter: #1b1a2a;
+  --color-very-dark: #080715;
+  --color-red: #ff3535;
+  --color-gray: #6e6e6e;
+  --color-default-elipse-fiol: #473cfb;
+
+  --color-font-main: var(--color-white);
+  --color-font-span: var(--color-accent);
+  --color-border-accent: var(--color-accent);
+  --color-border-main: var(--color-light-highlighter);
+  --color-heart-active: var(--color-red);
+  --color-heart-notactive: var(--color-white);
+  --color-placeholder: var(--color-gray);
+  --color-outline: var(--color-white);
+  --color-title-main: var(--color-white);
+  --color-text-white: var(--color-white);
+
+  --background-body: var(--color-very-dark);
+  --background-elements: var(--color-dark-hightlighter);
+  --background-button-active: var(--color-accent);
+  --background-wrapper: var(--color-black);
+  --background-white: var(--color-white);
+
+  --gradient-button: radial-gradient(
+    170.23% 282.39% at -64.02% 210.29%,
+    var(--color-accent) 0%,
+    var(--color-default-elipse-fiol) 100%
+  );
+
+  --border-width-sm: 2px;
+  --border-width-md: 3px;
+  --border-radius-sm: 10px;
+  --border-radius-md: 15px;
+  --border-radius-lg: 20px;
+
+  --container-app-width: 1440px;
+  --font-family-base: 'Manrope', sans-serif;
+  --container-padding-x: 15px;
+  --transition-duration: 0.2s;
+  --transition-duration-longer: 0.4s;
+}
+
+:root.dark-theme {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-accent: #ffa500;
+  --color-light-highlighter: #302e53;
+  --color-dark-hightlighter: #1b1a2a;
+  --color-very-dark: #080715;
+  --color-red: #ff3535;
+  --color-gray: #6e6e6e;
+  --color-default-elipse-fiol: #473cfb;
+
+  --color-font-main: var(--color-white);
+  --color-font-span: var(--color-accent);
+  --color-border-accent: var(--color-accent);
+  --color-border-main: var(--color-light-highlighter);
+  --color-heart-active: var(--color-red);
+  --color-heart-notactive: var(--color-white);
+  --color-placeholder: var(--color-gray);
+  --color-outline: var(--color-white);
+  --color-title-main: var(--color-white);
+  --color-text-white: var(--color-white);
+
+  --background-body: var(--color-very-dark);
+  --background-elements: var(--color-dark-hightlighter);
+  --background-button-active: var(--color-accent);
+  --background-wrapper: var(--color-black);
+  --background-white: var(--color-white);
+}
+
+:root.light-theme {
+  --color-background-light: #f9f9f9;
+  --color-light-neutral: #e8e8f0;
+  --color-border-light: #cccccc;
+
+  --color-font-main: var(--color-black);
+  --color-title-main: var(--color-black);
+  --color-text-white: var(--color-white);
+
+  --color-font-span: var(--color-accent);
+  --color-border-accent: var(--color-accent);
+  --color-border-main: var(--color-border-light);
+  --color-placeholder: var(--color-gray);
+  --color-outline: var(--color-black);
+
+  --color-heart-active: var(--color-red);
+  --color-heart-notactive: var(--color-gray);
+
+  --background-body: var(--color-background-light);
+  --background-elements: var(--color-white);
+  --background-button-active: var(--color-accent);
+  --background-wrapper: var(--color-light-neutral);
+  --background-white: var(--color-white);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background-light: #f9f9f9;
+    --color-light-neutral: #e8e8f0;
+    --color-border-light: #cccccc;
+
+    --color-font-main: var(--color-black);
+    --color-title-main: var(--color-black);
+    --color-text-white: var(--color-white);
+
+    --color-font-span: var(--color-accent);
+    --color-border-accent: var(--color-accent);
+    --color-border-main: var(--color-border-light);
+    --color-placeholder: var(--color-gray);
+    --color-outline: var(--color-black);
+
+    --color-heart-active: var(--color-red);
+    --color-heart-notactive: var(--color-gray);
+
+    --background-body: var(--color-background-light);
+    --background-elements: var(--color-white);
+    --background-button-active: var(--color-accent);
+    --background-wrapper: var(--color-light-neutral);
+    --background-white: var(--color-white);
+  }
+}

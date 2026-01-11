@@ -1,0 +1,27 @@
+@use '@styles/helpers' as *;
+
+.footer {
+	padding-block: fluid(50, 20);
+	background-color: var(--color-dark-hightlighter);
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__content {
+		display: flex;
+		align-items: center;
+		gap: fluid(30, 20);
+		max-width: max-content;
+
+		& a {
+			color: var(--color-font-main);
+
+			@include hover {
+				color: var(--color-accent);
+			}
+		}
+	}
+}

@@ -1,0 +1,129 @@
+@use 'helpers/index' as *;
+
+html {
+	&.is-lock {
+		overflow: hidden;
+	}
+}
+
+.section {
+	padding-block: fluid(100, 20);
+}
+
+.main {
+	height: 100%;
+}
+
+.container {
+	max-width: calc(var(--container-app-width) + 30px);
+	margin: 0 auto;
+	padding-inline: 15px;
+}
+
+.d-n {
+	display: none !important;
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+body {
+	font-size: 14px;
+	font-family: var(--font-family-base);
+	font-weight: 400;
+	color: var(--color-font-main);
+	background-color: var(--background-body);
+	height: 100dvh;
+	overflow: hidden;
+	min-height: 100vh;
+}
+
+main {
+	flex-grow: 1;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+	color: var(--color-title-main);
+	font-family: var(--font-family-base);
+	line-height: 1.2;
+}
+
+h1,
+.h1 {
+	@include fluid-text(24, 20);
+
+	font-weight: 700;
+}
+
+h2,
+.h2 {
+	@include fluid-text(20, 16);
+
+	font-weight: 700;
+}
+
+h3,
+.h3 {
+	@include fluid-text(16, 14);
+	font-weight: 700;
+}
+
+h4,
+.h4 {
+	font-size: 14px;
+	font-weight: 700;
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+	transition-duration: var(--transition-duration);
+}
+
+a {
+	color: inherit;
+
+	&[class] {
+		text-decoration: none;
+	}
+}
+
+:focus-visible {
+	@include focus-visible;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--color-accent);
+}
