@@ -65,7 +65,7 @@ import AppSubstrate from '@/ui/substrate/AppSubstrate.vue'
 const productsStore = useProductsStore()
 
 const activeCat = ref([1])
-const { isLoad, productsInfo, products, pages, page, categories } =
+const { isLoad, products, pages, page, categories } =
 	storeToRefs(productsStore)
 
 const handlePaginationPrev = async () => {

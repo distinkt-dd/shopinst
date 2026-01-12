@@ -1,6 +1,7 @@
 import type {
 	TCategory,
 	TProductInProducts,
+	TProductInBasket,
 	TProductResult,
 	TProductsResult,
 } from '@/types/responseTypes'
@@ -12,27 +13,33 @@ import { defineStore } from 'pinia'
 const api = new Api(API_URL)
 const projectAPI = new projectApi(api)
 
+export type TBasket = {
+	items: TProductInBasket[]
+	counter: number
+}
+
 interface IProductsStore {
-	productsInfo: TProductsResult | {}
-	currentProduct: TProductResult | {}
+	productsInfo: TProductsResult | null
+	currentProduct: TProductResult | null
 	pages: number
 	page: number
-	basket: TProductInProducts[]
+	basket: TBasket
 	isLoad: boolean
-	counter: number
-	categories: TCategory[] | []
-	products: TProductInProducts[] | []
+	categories: TCategory[]
+	products: TProductInProducts[]
 }
 
 export const useProductsStore = defineStore('productsStore', {
 	state: (): IProductsStore => ({
-		productsInfo: {},
-		currentProduct: {},
+		productsInfo: null,
+		currentProduct: null,
 		pages: 1,
 		page: 1,
-		basket: [],
+		basket: {
+			items: [],
+			counter: 0,
+		},
 		isLoad: false,
-		counter: 0,
 		categories: [],
 		products: [],
 	}),
@@ -40,48 +47,83 @@ export const useProductsStore = defineStore('productsStore', {
 	getters: {
 		getPages: state => state.pages,
 		getBasket: state => state.basket,
+		getBasketItems: state => state.basket.items,
 		getCurrentProduct: state => state.currentProduct,
 		getProductsInfo: state => state.productsInfo,
-		getData: state => {
-			state.basket, state.currentProduct, state.pages, state.productsInfo
-		},
 		getIsLoad: state => state.isLoad,
-		getCounter: state => state.counter,
 		getCategories: state => state.categories,
 	},
 
 	actions: {
 		clearAll() {
-			this.productsInfo = {}
-			this.basket = []
+			this.productsInfo = null
+			this.basket = {
+				items: [],
+				counter: 0,
+			}
 			this.pages = 1
-			this.currentProduct = {}
+			this.currentProduct = null
 			this.isLoad = false
-			this.counter = 0
 			this.products = []
 			this.categories = []
 		},
 
-		setBasketPlus(product: TProductInProducts, categoryId: number) {
-			if (product) {
-				const prodInBasket =
-					this.basket.find(prod => prod.id === product.id) !== undefined
-				if (!prodInBasket) {
-					this.basket.push(product)
-					this.counter += 1
-
-					localStorage.setItem(
-						'basketData',
-						JSON.stringify({
-							basket: this.basket.map(item => ({
-								...item,
-								categoryId: categoryId,
-							})),
-							counter: this.counter,
-						})
-					)
+		initBasketFromLocalStorage() {
+			try {
+				const localStorageBasket = localStorage.getItem('basketData')
+				if (localStorageBasket) {
+					const parsed = JSON.parse(localStorageBasket)
+					if (
+						parsed &&
+						Array.isArray(parsed.items) &&
+						typeof parsed.counter === 'number'
+					) {
+						this.basket = parsed
+					}
+				}
+			} catch (err) {
+				console.error('Ошибка при загрузке корзины:', err)
+				this.basket = {
+					items: [],
+					counter: 0,
 				}
 			}
+		},
+
+		addToBasket(product: TProductInProducts, categoryId: number) {
+			const exists = this.basket.items.find(item => item.id === product.id)
+
+			if (!exists) {
+				const basketItem: TProductInBasket = {
+					...product,
+					categoryId,
+				}
+
+				this.basket.items.push(basketItem)
+				this.basket.counter += 1
+				this.saveBasketToLocalStorage()
+			}
+		},
+
+		removeFromBasket(productId: number) {
+			const index = this.basket.items.findIndex(item => item.id === productId)
+			if (index !== -1) {
+				this.basket.items.splice(index, 1)
+				this.basket.counter = Math.max(0, this.basket.counter - 1)
+				this.saveBasketToLocalStorage()
+			}
+		},
+
+		clearBasket() {
+			this.basket = {
+				items: [],
+				counter: 0,
+			}
+			localStorage.removeItem('basketData')
+		},
+
+		saveBasketToLocalStorage() {
+			localStorage.setItem('basketData', JSON.stringify(this.basket))
 		},
 
 		setPage(operator: boolean) {
@@ -131,6 +173,36 @@ export const useProductsStore = defineStore('productsStore', {
 				this.categories = categories
 			} catch (err) {
 				console.dir(err)
+			}
+		},
+
+		async setCurrentProduct(prodId: string) {
+			try {
+				const product = await projectAPI.getProduct({
+					apiKey: API_KEY,
+					id: prodId,
+				})
+				this.currentProduct = product
+			} catch (err) {
+				console.error(err)
+			}
+		},
+
+		async fetchProductById(productId: number) {
+			try {
+				this.setIsLoadTrue()
+				const product = await projectAPI.getProduct({
+					apiKey: API_KEY,
+					id: String(productId),
+				})
+				this.currentProduct = product
+				return product
+			} catch (error) {
+				console.error('Ошибка загрузки товара:', error)
+				this.currentProduct = null
+				throw error
+			} finally {
+				this.setIsLoadFalse()
 			}
 		},
 	},

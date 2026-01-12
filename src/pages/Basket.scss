@@ -1,0 +1,13 @@
+@use '@styles/helpers' as *;
+
+.basket {
+	&__button {
+		padding: fluid(10, 5) fluid(20, 10);
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: fluid(50, 20);
+	}
+}
