@@ -11,7 +11,7 @@
 							<app-substrate class="header__substrate">
 								<app-button class="button header__button button-square-44">
 									<basket-icon />
-									<span class="header__button-counter"> 1 </span>
+									<span class="header__button-counter"> {{ counter }} </span>
 								</app-button>
 							</app-substrate>
 						</router-link>
@@ -23,9 +23,14 @@
 </template>
 
 <script lang="ts" setup>
-import AppSubstrate from '@/ui/substrate/AppSubstrate.vue'
+import { useProductsStore } from '@/stores/products'
 import AppButton from '@/ui/button/AppButton.vue'
 import BasketIcon from '@/ui/icons/BasketIcon.vue'
+import AppSubstrate from '@/ui/substrate/AppSubstrate.vue'
+import { storeToRefs } from 'pinia'
+const productsStore = useProductsStore()
+
+const { counter } = storeToRefs(productsStore)
 </script>
 
 <style scoped lang="scss">

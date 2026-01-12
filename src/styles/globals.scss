@@ -8,6 +8,12 @@ html {
 
 .section {
 	padding-block: fluid(100, 20);
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: fluid(40, 15);
+	}
 }
 
 .main {
@@ -37,7 +43,6 @@ body {
 	color: var(--color-font-main);
 	background-color: var(--background-body);
 	height: 100dvh;
-	overflow: hidden;
 	min-height: 100vh;
 }
 
