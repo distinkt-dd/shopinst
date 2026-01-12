@@ -26,7 +26,7 @@ export class projectApi {
 
 	async getProduct(options: TProductOnce): Promise<TProductResult> {
 		const response: TProductResult = await this.api.get(
-			`product/${options.id}?api_key=${options.apiKey}`
+			`/product/${options.id}?api_key=${options.apiKey}`
 		)
 		return response
 	}

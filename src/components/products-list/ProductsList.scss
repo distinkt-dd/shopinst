@@ -2,6 +2,8 @@
 .products {
 	&__list {
 		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
 		gap: fluid(40, 20);
 		&-item {
 			max-width: 300px;

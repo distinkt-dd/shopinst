@@ -1,15 +1,22 @@
 <script setup lang="ts">
-import { computed, onMounted, type Component } from 'vue'
-import { useRoute } from 'vue-router'
+import { onMounted } from 'vue'
 import Header from '@components/header/Header.vue'
 import Footer from '@components/footer/Footer.vue'
+import { useProductsStore } from './stores/products'
 
+const productsStore = useProductsStore()
+
+onMounted(() => {
+	productsStore.initBasketFromLocalStorage()
+})
 </script>
 
 <template>
-	<Header />
-	<main class="main container-app">
-		<router-view></router-view>
-	</main>
-	<Footer />
+	<div class="app">
+		<Header />
+		<main class="main container-app">
+			<router-view />
+		</main>
+		<Footer />
+	</div>
 </template>
