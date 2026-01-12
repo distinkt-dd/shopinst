@@ -1,8 +1,12 @@
 # Документация, чтобы развернуть проект
 
+## Внимание
+
+Для запуска проекта, нужно иметь актуальную версию node.js: v22.17.0
+
 ## Клонирование репозитория и инициализация зависимостей
 
-clone https://github.com/distinkt-dd/shopinst
+git clone https://github.com/distinkt-dd/shopinst
 
 npm install
 
