@@ -1,3 +1,4 @@
+
 export type TProductInProducts = {
 	id: number
 	name: string
@@ -8,7 +9,7 @@ export type TProductInProducts = {
 
 export type TProductsResult = {
 	page: number
-	total_page: number
+	total_pages: number
 	items: TProductInProducts[]
 }
 
@@ -21,3 +22,10 @@ export type TProductResult = {
 	description: string | null
 	'rating_count': number
 }
+
+export type TCategory = {
+	name: string,
+	id: number,
+}
+
+export type TCategoriesResult = TCategory[]

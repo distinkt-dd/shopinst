@@ -1,0 +1,9 @@
+@use '@styles/helpers' as *;
+.pagination {
+	display: flex;
+	align-items: center;
+	gap: fluid(30, 15);
+	&__substrate {
+		max-width: max-content;
+	}
+}

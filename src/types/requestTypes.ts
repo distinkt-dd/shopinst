@@ -8,3 +8,7 @@ export type TProductOnce = {
 	apiKey: string,
 	id: string,
 }
+
+export type TCategotiesOptions = {
+	apiKey: string
+}

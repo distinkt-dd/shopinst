@@ -1,0 +1,15 @@
+@use '@styles/helpers' as *;
+
+.showcase {
+	&__buttons {
+		display: flex;
+		align-items: center;
+		gap: fluid(30, 15);
+	}
+
+	&__button {
+		padding: fluid(5, 3) fluid(20, 10);
+	}
+
+
+}

@@ -34,6 +34,11 @@
       color: var(--color-white);
       background-color: var(--color-accent);
     }
+
+    &.active {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+    }
   }
 
   &-gradient {
